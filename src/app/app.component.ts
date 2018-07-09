@@ -15,23 +15,28 @@ export class AppComponent {
   loading: boolean;
   list: Subscription;
   channelName: string;
+  today: string;
+  day: string;
+  channelId: number;
 
   constructor(private apollo: Apollo) {
     this.get(1);
+    this.day = moment().format('YYYY-MM-DD');
+    this.today = this.day;
   }
 
   get(channelId: number) {
-    const today = moment().format('YYYY-MM-DD');
+    this.channelId = channelId;
     this.loading = true;
+    console.log(this.day);
     this.list = this.apollo.watchQuery<any>({
       query: gql`
       {
-        slotsRange(channelId: ${channelId}, startDate: "${today}", endDate: "${today}") {
+        slotsRange(channelId: ${this.channelId}, startDate: "${this.day}", endDate: "${this.day}") {
           publishingName,
           scheduledDate,
           event {
-            duration,
-            synopsis
+            duration
           },
           title {
             rating,
@@ -55,6 +60,12 @@ export class AppComponent {
   }
 
   update(event) {
-    this.get(event.target.value);
+    this.channelId = event.target.value;
+    this.get(this.channelId);
+  }
+
+  onDateSelect(event) {
+    this.day = `${event.year}-${event.month < 10 ? '0' + event.month : event.month }-${event.day < 10 ? '0' + event.day : event.day}`;
+    this.get(this.channelId);
   }
 }

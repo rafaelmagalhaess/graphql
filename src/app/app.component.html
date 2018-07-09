@@ -13,7 +13,11 @@
     </select>
   </form>
 
-  <h1 class="text-center my-3">{{ channelName }}</h1>
+  <h3 class="text-center my-3">Programação {{ day === today ? 'de hoje': 'do dia' }} ({{ day | amDateFormat: 'DD/MM/YYYY' }}) do canal {{ channelName }}</h3>
+
+    <div class="mx-auto my-5" style="width: 235px">
+      <ngb-datepicker (select)="onDateSelect($event)"></ngb-datepicker>
+    </div>
   
   <table class="table table-striped" *ngIf="!loading">
     <thead class="thead-light">
