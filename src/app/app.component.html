@@ -5,6 +5,12 @@
     <select class="form-control" ng-model="channelId" (change)="update($event)" id="canal">
       <option value="1">GNT</option>
       <option value="2">Multishow</option>
+      <option value="3">OFF</option>
+      <option value="4">Viva</option>
+      <option value="5">Studio Universal</option>
+      <option value="7">Gloob</option>
+      <option value="8">BIS</option>
+      <option value="11">SporTV</option>
     </select>
   </form>
 
@@ -15,6 +21,7 @@
       <tr>
         <th>Horário</th>
         <th>Nome do Programa</th>
+        <th>Classificação Etária</th>
         <th>Duração</th>
         <th>Informações</th>
       </tr>
@@ -22,11 +29,16 @@
     <tbody>
       <tr *ngFor="let item of list">
         <td>{{ item.scheduledDate | amDateFormat: 'HH:mm' }}</td>
-        <td>{{ item.publishingName }}</td>
+        <td>
+          <strong>{{ item.publishingName }}</strong><br>
+          {{ item.title.seasonNumber > 0 ? 'Temporada '+item.title.seasonNumber+' - ' : '' }}
+          {{ item.title.episodeNumber > 0 ? 'Episódio '+item.title.episodeNumber : '' }}
+        </td>
+        <td class="text-capitalize">{{ item.title.rating }}</td>
         <td>{{ item.event.duration }}</td>
         <td>
-          <button *ngIf="item.event.synopsis" type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbTooltip="{{ item.event.synopsis }}">
-              {{ item.event.synopsis ? 'Sinopse' : 'Sem Informações' }}
+          <button *ngIf="item.title.synopsis" type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbTooltip="{{ item.title.synopsis }}">
+              {{ item.title.synopsis ? 'Sinopse' : 'Sem Informações' }}
           </button>
         </td>
       </tr>

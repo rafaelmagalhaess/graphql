@@ -31,6 +31,12 @@ export class AppComponent {
             duration,
             synopsis
           },
+          title {
+            rating,
+            synopsis,
+            seasonNumber,
+            episodeNumber
+          },
           channel {
             name
           }
