@@ -7,6 +7,7 @@ import { Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { MomentModule } from 'ngx-moment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +20,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
-    MomentModule
+    MomentModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

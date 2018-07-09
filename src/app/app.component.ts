@@ -28,7 +28,8 @@ export class AppComponent {
           publishingName,
           scheduledDate,
           event {
-            duration
+            duration,
+            synopsis
           },
           channel {
             name

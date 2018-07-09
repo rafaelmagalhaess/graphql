@@ -1,17 +1,22 @@
   
-  <select ng-model="channelId" (change)="update($event)">
-    <option value="1">GNT</option>
-    <option value="2">Multishow</option>
-  </select>
+  <div class="container">
+  <form class="text-center">
+    <label for="canal" class="mt-3">Selecione o canal:</label>
+    <select class="form-control" ng-model="channelId" (change)="update($event)" id="canal">
+      <option value="1">GNT</option>
+      <option value="2">Multishow</option>
+    </select>
+  </form>
 
-  <h2>{{ channelName }}</h2>
+  <h1 class="text-center my-3">{{ channelName }}</h1>
   
-  <table border="1" *ngIf="!loading">
-    <thead>
+  <table class="table table-striped" *ngIf="!loading">
+    <thead class="thead-light">
       <tr>
         <th>Horário</th>
         <th>Nome do Programa</th>
         <th>Duração</th>
+        <th>Informações</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +24,12 @@
         <td>{{ item.scheduledDate | amDateFormat: 'HH:mm' }}</td>
         <td>{{ item.publishingName }}</td>
         <td>{{ item.event.duration }}</td>
+        <td>
+          <button *ngIf="item.event.synopsis" type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbTooltip="{{ item.event.synopsis }}">
+              {{ item.event.synopsis ? 'Sinopse' : 'Sem Informações' }}
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
