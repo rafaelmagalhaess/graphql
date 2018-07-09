@@ -1,13 +1,12 @@
   
-  <div class="container">
+<div class="container">
   <form class="text-center">
     <label for="canal" class="mt-3">Selecione o canal:</label>
-    <select class="form-control" ng-model="channelId" (change)="update($event)" id="canal">
+    <select class="form-control" (change)="update($event)" id="canal">
       <option value="1">GNT</option>
       <option value="2">Multishow</option>
       <option value="3">OFF</option>
       <option value="4">Viva</option>
-      <option value="5">Studio Universal</option>
       <option value="7">Gloob</option>
       <option value="8">BIS</option>
       <option value="11">SporTV</option>

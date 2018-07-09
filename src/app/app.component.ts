@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Subscription } from '../../node_modules/apollo-client/util/Observable';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +21,12 @@ export class AppComponent {
   }
 
   get(channelId: number) {
+    const today = moment().format('YYYY-MM-DD');
     this.loading = true;
     this.list = this.apollo.watchQuery<any>({
       query: gql`
       {
-        slotsRange(channelId: ${channelId}, startDate: "", endDate: "") {
+        slotsRange(channelId: ${channelId}, startDate: "${today}", endDate: "${today}") {
           publishingName,
           scheduledDate,
           event {
